@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Launch Pad — From Idea to Startup</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* =============================
+       Global Styles
+    ============================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      color: #162033;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --primary: #2563eb;
+      --secondary: #7c3aed;
+      --dark: #111827;
+      --text: #4b5563;
+      --light: #f8fafc;
+      --border: #e5e7eb;
+      --white: #ffffff;
+      --shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+      --soft-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+      --radius: 22px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .section-heading span {
+      display: inline-block;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    .section-heading p {
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* =============================
+       Navbar
+    ============================= */
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.75);
+    }
+
+    .navbar {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-cta {
+      padding: 12px 22px;
+      background: var(--dark);
+      color: white;
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 1.45rem;
+      cursor: pointer;
+      color: var(--dark);
+    }
+
+    /* =============================
+       Hero Section
+    ============================= */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 100px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 34%),
+        radial-gradient(circle at right, rgba(124, 58, 237, 0.11), transparent 28%),
+        #ffffff;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .badge {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: #eff6ff;
+      color: var(--primary);
+      border: 1px solid #dbeafe;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 5.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      color: var(--dark);
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text);
+      max-width: 650px;
+      margin-bottom: 34px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 26px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.98rem;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: 0 16px 32px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 44px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-outline {
+      background: white;
+      color: var(--dark);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .hero-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      border-radius: 34px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .startup-card {
+      border-radius: 28px;
+      background: var(--white);
+      padding: 26px;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .startup-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .startup-card h3 {
+      font-size: 1.35rem;
+      color: var(--dark);
+    }
+
+    .status {
+      color: #16a34a;
+      background: #dcfce7;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .progress-box {
+      margin: 20px 0;
+    }
+
+    .progress-box p {
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 78%;
+      border-radius: inherit;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .mini-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--light);
+      border: 1px solid var(--border);
+    }
+
+    .mini-item strong {
+      display: block;
+      font-size: 1.4rem;
+      color: var(--dark);
+    }
+
+    .mini-item span {
+      color: var(--text);
+      font-size: 0.82rem;
+    }
+
+    /* =============================
+       Cards
+    ============================= */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--soft-shadow);
+      transition: 0.28s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+      border-color: rgba(37, 99, 235, 0.28);
+    }
+
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(124, 58, 237, 0.12));
+      color: var(--primary);
+      font-size: 1.25rem;
+    }
+
+    .card h3 {
+      color: var(--dark);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    /* =============================
+       Services
+    ============================= */
+    .services {
+      background: var(--light);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      padding: 34px;
+      border-radius: 28px;
+      background: white;
+      border: 1px solid var(--border);
+      box-shadow: var(--soft-shadow);
+      transition: 0.28s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+    }
+
+    .service-card h3 {
+      font-size: 1.22rem;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    /* =============================
+       How It Works
+    ============================= */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      padding: 36px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      background: white;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .step-number {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 1.15rem;
+      margin-bottom: 22px;
+      box-shadow: 0 15px 28px rgba(37, 99, 235, 0.25);
+    }
+
+    .step h3 {
+      font-size: 1.25rem;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    /* =============================
+       Contact
+    ============================= */
+    .contact {
+      background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(124, 58, 237, 0.1), transparent 30%),
+        var(--light);
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .contact-info h2 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.12;
+      color: var(--dark);
+      margin-bottom: 18px;
+    }
+
+    .contact-info p {
+      color: var(--text);
+      margin-bottom: 28px;
+      max-width: 520px;
+    }
+
+    .contact-points {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-point {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .contact-point i {
+      color: var(--primary);
+    }
+
+    .form-card {
+      background: white;
+      padding: 34px;
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 15px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: 0.2s ease;
+      background: #fbfdff;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+      background: white;
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .error-message {
+      display: none;
+      color: #dc2626;
+      font-size: 0.82rem;
+      margin-top: 6px;
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    /* =============================
+       Footer
+    ============================= */
+    footer {
+      padding: 34px 0;
+      background: #0f172a;
+      color: white;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-content p {
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+
+    .socials {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .socials a {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      transition: 0.25s ease;
+    }
+
+    .socials a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* =============================
+       Responsive Design
+    ============================= */
+    @media (max-width: 1040px) {
+      .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 74px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 6%;
+        background: white;
+        border-bottom: 1px solid var(--border);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero-grid,
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 130px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding: 70px 0;
+      }
+
+      .cards-grid,
+      .services-grid,
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        letter-spacing: -0.03em;
+      }
+
+      .hero-card,
+      .form-card {
+        padding: 22px;
+        border-radius: 24px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .footer-content {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================
+       Header / Navigation
+  ============================= -->
+  <header>
+    <div class="container navbar">
+      <a href="#home" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-rocket"></i></span>
+        Launch Pad
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#problems">Problems</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#contact" class="nav-cta">Get Started</a></li>
+      </ul>
+
+      <div class="menu-btn" id="menuBtn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- =============================
+       Hero Section
+  ============================= -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="badge">
+          <i class="fa-solid fa-lightbulb"></i>
+          Startup guidance for first-time founders
+        </div>
+
+        <h1>Have an idea? Let’s turn it into a <span class="gradient-text">startup.</span></h1>
+
+        <p>
+          Launch Pad helps students, creators, and entrepreneurs validate ideas and become investor-ready.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">
+            Start Your Idea Journey
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="#how" class="btn btn-outline">See How It Works</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="startup-card">
+          <div class="startup-card-top">
+            <h3>Idea Readiness</h3>
+            <span class="status">On Track</span>
+          </div>
+
+          <div class="progress-box">
+            <p>Validation Progress</p>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+
+          <div class="mini-grid">
+            <div class="mini-item">
+              <strong>01</strong>
+              <span>Idea Review</span>
+            </div>
+            <div class="mini-item">
+              <strong>02</strong>
+              <span>Market Check</span>
+            </div>
+            <div class="mini-item">
+              <strong>03</strong>
+              <span>Roadmap</span>
+            </div>
+            <div class="mini-item">
+              <strong>04</strong>
+              <span>Investor Prep</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================
+       Problem Section
+  ============================= -->
+  <section class="section" id="problems">
+    <div class="container">
+      <div class="section-heading">
+        <span>The Problem</span>
+        <h2>Many people have ideas, but don’t know the next step.</h2>
+        <p>Launch Pad helps remove confusion by giving practical direction from idea stage to startup execution.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+          <h3>No idea validation</h3>
+          <p>People build without checking if customers actually need the solution.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-map"></i></div>
+          <h3>No business roadmap</h3>
+          <p>Founders often lack a clear step-by-step plan to move forward.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-file-signature"></i></div>
+          <h3>No registration knowledge</h3>
+          <p>Documentation, registration, and compliance become confusing early barriers.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-handshake"></i></div>
+          <h3>No investor guidance</h3>
+          <p>Many ideas fail to communicate business potential clearly to investors.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-signs-post"></i></div>
+          <h3>Confusion on next steps</h3>
+          <p>People know the idea, but not the correct action to take next.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================
+       Services Section
+  ============================= -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="section-heading">
+        <span>Our Services</span>
+        <h2>Everything you need to move from idea to execution.</h2>
+        <p>We support early-stage founders with practical guidance, documentation help, and investor preparation.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="card-icon"><i class="fa-solid fa-circle-check"></i></div>
+          <h3>Idea Validation</h3>
+          <p>Understand the problem, target users, market need, and whether your idea has real potential.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="card-icon"><i class="fa-solid fa-compass"></i></div>
+          <h3>Startup Guidance</h3>
+          <p>Get a simple business roadmap with clear actions for product, customers, and growth.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="card-icon"><i class="fa-solid fa-folder-open"></i></div>
+          <h3>Documentation Help</h3>
+          <p>Support for business documents, registration preparation, pitch material, and basic compliance.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Investor Readiness</h3>
+          <p>Prepare your pitch, business model, financial basics, and story for investor conversations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================
+       How It Works Section
+  ============================= -->
+  <section class="section" id="how">
+    <div class="container">
+      <div class="section-heading">
+        <span>How It Works</span>
+        <h2>A simple 3-step process for first-time founders.</h2>
+        <p>Start with your idea. We help you understand, improve, and build it with confidence.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Submit your idea</h3>
+          <p>Share your startup idea, problem statement, and what kind of help you need.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>We analyze and guide</h3>
+          <p>We study your idea and suggest validation steps, roadmap, documents, and improvements.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>You start building</h3>
+          <p>Use the guidance to build your MVP, prepare documents, and become investor-ready.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================
+       Contact Section
+  ============================= -->
+  <section class="section contact" id="contact">
+    <div class="container contact-wrapper">
+      <div class="contact-info">
+        <span class="badge"><i class="fa-solid fa-paper-plane"></i> Start today</span>
+        <h2>Ready to turn your idea into a real startup?</h2>
+        <p>
+          Tell us about your idea and the support you need. Launch Pad will help you take the next practical step.
+        </p>
+
+        <div class="contact-points">
+          <div class="contact-point"><i class="fa-solid fa-check"></i> Practical idea validation</div>
+          <div class="contact-point"><i class="fa-solid fa-check"></i> Simple startup roadmap</div>
+          <div class="contact-point"><i class="fa-solid fa-check"></i> Investor-focused preparation</div>
+        </div>
+      </div>
+
+      <!--
+        IMPORTANT:
+        To receive form submissions in your email:
+        1. Go to https://formspree.io/
+        2. Create a free account
+        3. Create a new form
+        4. Replace YOUR_FORM_ID below with your Formspree form ID
+      -->
+      <form class="form-card" id="contactForm" action="https://formspree.io/f/mgorgjpg" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" />
+          <small class="error-message">Please enter your name.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="contactDetail">Email or WhatsApp</label>
+          <input type="text" id="contactDetail" name="email_or_whatsapp" placeholder="Enter your email or WhatsApp number" />
+          <small class="error-message">Please enter a valid email or WhatsApp number.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="idea">Idea Description</label>
+          <textarea id="idea" name="idea_description" placeholder="Briefly describe your startup idea"></textarea>
+          <small class="error-message">Please describe your idea.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="help">What help do you need?</label>
+          <input type="text" id="help" name="help_needed" placeholder="Example: validation, registration, investor pitch" />
+          <small class="error-message">Please mention what help you need.</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+          Contact Us
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <div class="success-message" id="successMessage">
+          Thank you! Your idea request has been submitted successfully.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- =============================
+       Footer
+  ============================= -->
+  <footer>
+    <div class="container footer-content">
+      <p>Launch Pad — From Idea to Startup</p>
+      <p>contact@launchpad.com</p>
+
+      <div class="socials">
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* =============================
+       Mobile Menu Toggle
+    ============================= */
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when a nav link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    /* =============================
+       Basic Form Validation
+    ============================= */
+    const contactForm = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+
+    contactForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name');
+      const contactDetail = document.getElementById('contactDetail');
+      const idea = document.getElementById('idea');
+      const help = document.getElementById('help');
+
+      let isValid = true;
+
+      // Hide all previous error messages
+      document.querySelectorAll('.error-message').forEach(error => {
+        error.style.display = 'none';
+      });
+
+      // Name validation
+      if (name.value.trim() === '') {
+        showError(name);
+        isValid = false;
+      }
+
+      // Email or WhatsApp validation
+      const contactValue = contactDetail.value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phonePattern = /^[0-9]{10,15}$/;
+
+      if (!emailPattern.test(contactValue) && !phonePattern.test(contactValue)) {
+        showError(contactDetail);
+        isValid = false;
+      }
+
+      // Idea validation
+      if (idea.value.trim().length < 10) {
+        showError(idea);
+        isValid = false;
+      }
+
+      // Help validation
+      if (help.value.trim() === '') {
+        showError(help);
+        isValid = false;
+      }
+
+      if (isValid) {
+        // Submit form data to Formspree so you receive it by email
+        contactForm.submit();
+      }
+    });
+
+    // Show error message below input
+    function showError(inputElement) {
+      const error = inputElement.parentElement.querySelector('.error-message');
+      error.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
