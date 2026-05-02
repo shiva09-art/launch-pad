@@ -3,120 +3,226 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- SEO & LinkedIn Ranking Tags -->
-  <title>Shiva Pandey | Founder of Launch Pad</title>
-  <meta name="description" content="Launch Pad: Execution-as-a-Service by Shiva Pandey. We help first-time founders in Mumbai validate ideas and become investor-ready.">
+
+  <!-- ===================== SEO ===================== -->
+  <title>Launch Pad | Turn Your Idea Into a Clear Startup Plan</title>
+  <meta name="description" content="Launch Pad helps students and first-time founders validate ideas, understand next steps, and prepare for pitch conversations.">
+  <meta name="keywords" content="startup idea validation, student founder help, first-time founder, startup roadmap, pitch preparation, Launch Pad startup">
   <link rel="canonical" href="https://shiva09-art.github.io/launch-pad/" />
 
-  <!-- Google Font -->
+  <!-- Open Graph -->
+  <meta property="og:title" content="Launch Pad | Turn Your Idea Into a Clear Startup Plan">
+  <meta property="og:description" content="For students and first-time founders who have ideas but need clarity, structure, and next steps.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shiva09-art.github.io/launch-pad/">
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Launch Pad",
+    "description": "Startup guidance for students and first-time founders. Idea validation, startup roadmap, documentation support, and pitch preparation.",
+    "url": "https://shiva09-art.github.io/launch-pad/",
+    "areaServed": "Global",
+    "serviceType": ["Idea Validation", "Startup Roadmap", "Business Documentation", "Pitch Preparation"],
+    "priceRange": "Free early access"
+  }
+  </script>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
-    /* =============================
-        Global Styles
-    ============================= */
-    * {
+    :root {
+      --ink: #0a0a0f;
+      --ink-80: #1a1a24;
+      --ink-60: #3d3d52;
+      --ink-40: #8888a0;
+      --ink-10: #f2f2f8;
+      --ink-05: #f9f9fc;
+      --accent: #ff4c1f;
+      --accent-dim: #ff4c1f22;
+      --accent-mid: #ff4c1f55;
+      --green: #00c26b;
+      --green-dim: #00c26b22;
+      --white: #ffffff;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --sp-sm: 16px;
+      --sp-md: 32px;
+      --sp-lg: 64px;
+      --sp-xl: 96px;
+      --r-sm: 8px;
+      --r-md: 16px;
+      --r-lg: 28px;
+      --r-full: 999px;
+      --shadow-md: 0 8px 28px rgba(10,10,15,0.10);
+      --shadow-lg: 0 24px 60px rgba(10,10,15,0.14);
+      --shadow-accent: 0 20px 50px rgba(255,76,31,0.22);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --t-fast: 180ms;
+      --t-med: 320ms;
+      --t-slow: 600ms;
+    }
+
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #ffffff;
-      color: #162033;
+      font-family: var(--font-sans);
+      background: var(--white);
+      color: var(--ink);
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    :root {
-      --primary: #2563eb;
-      --secondary: #7c3aed;
-      --dark: #111827;
-      --text: #4b5563;
-      --light: #f8fafc;
-      --border: #e5e7eb;
-      --white: #ffffff;
-      --shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
-      --soft-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
-      --radius: 22px;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
 
     .container {
-      width: min(1120px, 92%);
-      margin: auto;
+      width: min(1180px, 92%);
+      margin: 0 auto;
     }
 
-    .section {
-      padding: 90px 0;
+    .section { padding: var(--sp-xl) 0; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--sp-sm);
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
     }
 
     .section-heading {
-      max-width: 720px;
-      margin: 0 auto 48px;
+      max-width: 760px;
+      margin: 0 auto var(--sp-lg);
       text-align: center;
     }
 
-    .section-heading span {
-      display: inline-block;
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
+    h1, h2, h3, h4 {
+      font-family: var(--font-serif);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
     }
 
-    .section-heading h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.15;
-      color: var(--dark);
-      margin-bottom: 16px;
+    h2 {
+      font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+      color: var(--ink);
     }
 
-    .section-heading p {
-      color: var(--text);
-      font-size: 1rem;
+    .subtext {
+      font-size: 1.05rem;
+      color: var(--ink-40);
+      margin-top: 14px;
+      font-weight: 400;
     }
 
-    .gradient-text {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
     }
 
-    /* =============================
-        Navbar
-    ============================= */
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 80ms; }
+    .reveal-delay-2 { transition-delay: 160ms; }
+    .reveal-delay-3 { transition-delay: 240ms; }
+    .reveal-delay-4 { transition-delay: 320ms; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: var(--r-full);
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 28px 60px rgba(255,76,31,0.35);
+    }
+
+    .btn-dark {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .btn-dark:hover {
+      background: var(--ink-80);
+      transform: translateY(-3px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink-10);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
     header {
-      width: 100%;
       position: fixed;
       top: 0;
       left: 0;
+      width: 100%;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(229, 231, 235, 0.75);
+      padding: 16px 0;
+      transition: background var(--t-med), box-shadow var(--t-med);
+    }
+
+    header.scrolled {
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 1px 0 rgba(10,10,15,0.08);
     }
 
     .navbar {
-      height: 74px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -125,949 +231,1293 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--dark);
+      gap: 12px;
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--ink);
     }
 
-    .logo-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      background: var(--accent);
+      border-radius: 12px;
       display: grid;
       place-items: center;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+      color: white;
+      font-size: 1rem;
+      box-shadow: 0 8px 20px rgba(255,76,31,0.3);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 36px;
       list-style: none;
-      color: var(--text);
+      font-size: 0.9rem;
       font-weight: 500;
-      font-size: 0.95rem;
+      color: var(--ink-60);
     }
 
-    .nav-links a:hover {
-      color: var(--primary);
-    }
-
-    .nav-cta {
-      padding: 12px 22px;
-      background: var(--dark);
-      color: white;
-      border-radius: 999px;
-      transition: 0.25s ease;
-    }
-
-    .nav-cta:hover {
-      background: var(--primary);
-      transform: translateY(-2px);
-    }
+    .nav-links a:hover { color: var(--accent); }
 
     .menu-btn {
       display: none;
-      font-size: 1.45rem;
+      background: transparent;
+      border: none;
+      font-size: 1.3rem;
       cursor: pointer;
-      color: var(--dark);
+      color: var(--ink);
     }
 
-    /* =============================
-        Hero Section
-    ============================= */
     .hero {
       min-height: 100vh;
-      display: flex;
-      align-items: center;
+      display: grid;
+      place-items: center;
       padding-top: 100px;
       position: relative;
       overflow: hidden;
-      background:
-        radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 34%),
-        radial-gradient(circle at right, rgba(124, 58, 237, 0.11), transparent 28%),
-        #ffffff;
+      background: var(--white);
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      align-items: center;
-      gap: 60px;
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(10,10,15,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10,10,15,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 10%, black 40%, transparent 100%);
+      pointer-events: none;
     }
 
-    .badge {
-      width: fit-content;
+    .hero-inner {
+      text-align: center;
+      max-width: 960px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 16px;
-      background: #eff6ff;
-      color: var(--primary);
-      border: 1px solid #dbeafe;
-      border-radius: 999px;
+      padding: 8px 18px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      border-radius: var(--r-full);
+      font-size: 0.82rem;
       font-weight: 600;
-      font-size: 0.9rem;
-      margin-bottom: 24px;
+      color: var(--accent);
+      margin-bottom: 28px;
+      letter-spacing: 0.03em;
     }
 
     .hero h1 {
-      font-size: clamp(2.6rem, 6vw, 5.4rem);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-      color: var(--dark);
-      margin-bottom: 24px;
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      line-height: 0.96;
+      color: var(--ink);
+      margin-bottom: 28px;
     }
 
-    .hero p {
-      font-size: 1.1rem;
-      color: var(--text);
-      max-width: 650px;
-      margin-bottom: 34px;
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
     }
 
-    .hero-buttons {
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--ink-40);
+      max-width: 640px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 16px;
       flex-wrap: wrap;
     }
 
-    .btn {
-      display: inline-flex;
+    .hero-social-proof {
+      margin-top: 56px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 15px 26px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 0.98rem;
-      transition: 0.25s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      box-shadow: 0 16px 32px rgba(37, 99, 235, 0.25);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 22px 44px rgba(37, 99, 235, 0.3);
-    }
-
-    .btn-outline {
-      background: white;
-      color: var(--dark);
-      border: 1px solid var(--border);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      transform: translateY(-3px);
-    }
-
-    .hero-card {
-      position: relative;
-      background: rgba(255, 255, 255, 0.88);
-      border: 1px solid rgba(229, 231, 235, 0.9);
-      border-radius: 34px;
-      padding: 30px;
-      box-shadow: var(--shadow);
-    }
-
-    .startup-card {
-      border-radius: 28px;
-      background: var(--white);
-      padding: 26px;
-      box-shadow: var(--soft-shadow);
-    }
-
-    .startup-card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-
-    .startup-card h3 {
-      font-size: 1.35rem;
-      color: var(--dark);
-    }
-
-    .status {
-      color: #16a34a;
-      background: #dcfce7;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 700;
-    }
-
-    .progress-box {
-      margin: 20px 0;
-    }
-
-    .progress-box p {
-      margin-bottom: 8px;
-      font-size: 0.9rem;
-      color: var(--text);
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 10px;
-      border-radius: 999px;
-      background: #e5e7eb;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 78%;
-      border-radius: inherit;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-    }
-
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 24px;
-    }
-
-    .mini-item {
-      padding: 16px;
-      border-radius: 18px;
-      background: var(--light);
-      border: 1px solid var(--border);
-    }
-
-    .mini-item strong {
-      display: block;
-      font-size: 1.4rem;
-      color: var(--dark);
-    }
-
-    .mini-item span {
-      color: var(--text);
-      font-size: 0.82rem;
-    }
-
-    /* =============================
-        Cards
-    ============================= */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 20px;
-    }
-
-    .card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 26px;
-      box-shadow: var(--soft-shadow);
-      transition: 0.28s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow);
-      border-color: rgba(37, 99, 235, 0.28);
-    }
-
-    .card-icon {
-      width: 50px;
-      height: 50px;
-      display: grid;
-      place-items: center;
-      border-radius: 16px;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(124, 58, 237, 0.12));
-      color: var(--primary);
-      font-size: 1.25rem;
-    }
-
-    .card h3 {
-      color: var(--dark);
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      color: var(--text);
-      font-size: 0.92rem;
-    }
-
-    /* =============================
-        Services
-    ============================= */
-    .services {
-      background: var(--light);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-
-    .service-card {
-      padding: 34px;
-      border-radius: 28px;
-      background: white;
-      border: 1px solid var(--border);
-      box-shadow: var(--soft-shadow);
-      transition: 0.28s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow);
-    }
-
-    .service-card h3 {
-      font-size: 1.22rem;
-      color: var(--dark);
-      margin-bottom: 12px;
-    }
-
-    .service-card p {
-      color: var(--text);
-      font-size: 0.95rem;
-    }
-
-    /* =============================
-        How It Works
-    ============================= */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 26px;
-      counter-reset: step;
-    }
-
-    .step {
-      position: relative;
-      padding: 36px;
-      border-radius: 30px;
-      border: 1px solid var(--border);
-      background: white;
-      box-shadow: var(--soft-shadow);
-    }
-
-    .step-number {
-      width: 52px;
-      height: 52px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      font-size: 1.15rem;
-      margin-bottom: 22px;
-      box-shadow: 0 15px 28px rgba(37, 99, 235, 0.25);
-    }
-
-    .step h3 {
-      font-size: 1.25rem;
-      color: var(--dark);
-      margin-bottom: 10px;
-    }
-
-    .step p {
-      color: var(--text);
-      font-size: 0.95rem;
-    }
-
-    /* =============================
-        Contact
-    ============================= */
-    .contact {
-      background:
-        radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 32%),
-        radial-gradient(circle at bottom left, rgba(124, 58, 237, 0.1), transparent 30%),
-        var(--light);
-    }
-
-    .contact-wrapper {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .contact-info h2 {
-      font-size: clamp(2rem, 4vw, 3.1rem);
-      line-height: 1.12;
-      color: var(--dark);
-      margin-bottom: 18px;
-    }
-
-    .contact-info p {
-      color: var(--text);
-      margin-bottom: 28px;
-      max-width: 520px;
-    }
-
-    .contact-points {
-      display: grid;
-      gap: 14px;
-    }
-
-    .contact-point {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .contact-point i {
-      color: var(--primary);
-    }
-
-    .form-card {
-      background: white;
-      padding: 34px;
-      border-radius: 32px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-    }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    .form-group label {
-      display: block;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 8px;
-      font-size: 0.95rem;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 15px 16px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      font-family: inherit;
-      font-size: 0.95rem;
-      outline: none;
-      transition: 0.2s ease;
-      background: #fbfdff;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-      background: white;
-    }
-
-    .form-group textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    .error-message {
-      display: none;
-      color: #dc2626;
-      font-size: 0.82rem;
-      margin-top: 6px;
-    }
-
-    .success-message {
-      display: none;
-      margin-top: 16px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: #dcfce7;
-      color: #166534;
-      font-weight: 600;
-      font-size: 0.92rem;
-    }
-
-    /* =============================
-        Footer
-    ============================= */
-    footer {
-      padding: 34px 0;
-      background: #0f172a;
-      color: white;
-    }
-
-    .footer-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       gap: 24px;
       flex-wrap: wrap;
     }
 
-    .footer-content p {
-      color: #cbd5e1;
+    .proof-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .proof-number {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .proof-label {
+      font-size: 0.82rem;
+      color: var(--ink-40);
+      margin-top: 4px;
+    }
+
+    .proof-divider {
+      width: 1px;
+      height: 44px;
+      background: var(--ink-10);
+    }
+
+    .problem-section {
+      background: var(--ink);
+      color: var(--white);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .problem-section::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,76,31,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .problem-section h2 { color: var(--white); }
+    .problem-section .subtext { color: rgba(255,255,255,0.45); }
+
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+      margin-top: var(--sp-lg);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .problem-card {
+      padding: 32px 24px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      transition: background var(--t-med);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .problem-card:last-child { border-right: none; }
+
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--t-med) var(--ease);
+    }
+
+    .problem-card:hover::before { transform: scaleX(1); }
+    .problem-card:hover { background: rgba(255,255,255,0.06); }
+
+    .problem-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--r-sm);
+      background: rgba(255,76,31,0.15);
+      border: 1px solid rgba(255,76,31,0.3);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .problem-card h3 {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .problem-card p {
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      padding: 42px;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--ink-10);
+      background: var(--ink-05);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(255,76,31,0.2);
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity var(--t-med);
+    }
+
+    .service-card:hover::after { opacity: 1; }
+
+    .service-number {
+      font-family: var(--font-serif);
+      font-size: 5rem;
+      color: var(--ink-10);
+      line-height: 1;
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      pointer-events: none;
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--r-md);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-size: 1.3rem;
+      margin-bottom: 24px;
+    }
+
+    .service-card h3 {
+      font-size: 1.45rem;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      color: var(--ink-40);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: var(--r-full);
+      background: var(--ink-10);
+      color: var(--ink-60);
+    }
+
+    .how-bg { background: var(--ink-05); }
+
+    .steps-track {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .steps-track::before {
+      content: '';
+      position: absolute;
+      top: 42px;
+      left: calc(100% / 6);
+      right: calc(100% / 6);
+      height: 1px;
+      background: repeating-linear-gradient(90deg, var(--ink-10) 0, var(--ink-10) 10px, transparent 10px, transparent 20px);
+    }
+
+    .step {
+      padding: 32px 36px;
+      position: relative;
+    }
+
+    .step-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--ink-10);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--ink);
+      position: relative;
+      z-index: 1;
+      transition: background var(--t-med), border-color var(--t-med), color var(--t-med);
+      margin-bottom: 28px;
+    }
+
+    .step:hover .step-circle {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .step h3 {
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      color: var(--ink-40);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .step-outcome {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--green);
+      background: var(--green-dim);
+      padding: 5px 12px;
+      border-radius: var(--r-full);
+    }
+
+    .about-section {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .about-section h2 { color: var(--white); }
+    .about-section .subtext { color: rgba(255,255,255,0.45); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .about-card {
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      padding: 34px;
+    }
+
+    .about-card h3 {
+      font-size: 1.7rem;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .about-card p {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .value-list {
+      display: grid;
+      gap: 20px;
+    }
+
+    .value-row {
+      display: flex;
+      gap: 20px;
+      padding: 24px 28px;
+      border-radius: var(--r-md);
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.03);
+      transition: background var(--t-med), border-color var(--t-med);
+    }
+
+    .value-row:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,76,31,0.3);
+    }
+
+    .value-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border-radius: var(--r-sm);
+      background: rgba(255,76,31,0.15);
+      border: 1px solid rgba(255,76,31,0.25);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .value-content h4 {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .value-content p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .contact-left h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 18px;
+    }
+
+    .contact-left p {
+      color: var(--ink-40);
+      margin-bottom: 32px;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--ink-60);
+    }
+
+    .check-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--green-dim);
+      border: 1px solid var(--green);
+      display: grid;
+      place-items: center;
+      color: var(--green);
+      font-size: 0.65rem;
+      flex-shrink: 0;
+    }
+
+    .calendar-placeholder {
+      border: 2px dashed var(--ink-10);
+      border-radius: var(--r-lg);
+      padding: 48px 32px;
+      text-align: center;
+      background: var(--ink-05);
+      margin-top: 8px;
+    }
+
+    .calendar-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--r-md);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-size: 1.6rem;
+      margin: 0 auto 20px;
+    }
+
+    .calendar-placeholder h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .calendar-placeholder p {
+      font-size: 0.9rem;
+      color: var(--ink-40);
+      margin-bottom: 24px;
+    }
+
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--ink-10);
+      border-radius: var(--r-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 24px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group { margin-bottom: 16px; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: var(--r-md);
+      border: 1.5px solid var(--ink-10);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: var(--ink-05);
+      outline: none;
+      transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(255,76,31,0.1);
+      background: var(--white);
+    }
+
+    .form-group textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .error-msg {
+      display: none;
+      font-size: 0.78rem;
+      color: #dc2626;
+      margin-top: 5px;
+    }
+
+    .success-banner {
+      display: none;
+      padding: 14px 18px;
+      background: var(--green-dim);
+      border: 1px solid var(--green);
+      border-radius: var(--r-md);
+      color: #065f46;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 16px;
+    }
+
+    footer {
+      background: var(--ink);
+      color: white;
+      padding: 48px 0 32px;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 32px;
+    }
+
+    .footer-brand .logo {
+      color: white;
+      margin-bottom: 14px;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.4);
+      max-width: 280px;
+      line-height: 1.7;
+    }
+
+    .footer-links h4 {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 16px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-links ul li a {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      transition: color var(--t-fast);
+    }
+
+    .footer-links ul li a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.35);
     }
 
     .socials {
       display: flex;
-      align-items: center;
-      gap: 14px;
+      gap: 10px;
     }
 
     .socials a {
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.07);
       display: grid;
       place-items: center;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      color: white;
-      transition: 0.25s ease;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem;
+      transition: background var(--t-fast), color var(--t-fast);
     }
 
     .socials a:hover {
-      background: var(--primary);
-      transform: translateY(-3px);
+      background: var(--accent);
+      color: white;
     }
 
-    /* =============================
-        Responsive Design
-    ============================= */
-    @media (max-width: 1040px) {
-      .cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    @media (max-width: 1100px) {
+      .problems-grid { grid-template-columns: repeat(3, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 860px) {
-      .menu-btn {
-        display: block;
-      }
+      .menu-btn { display: block; }
 
       .nav-links {
-        position: absolute;
-        top: 74px;
-        left: 0;
-        width: 100%;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 260px;
+        background: var(--white);
         flex-direction: column;
         align-items: flex-start;
-        padding: 24px 6%;
-        background: white;
-        border-bottom: 1px solid var(--border);
-        display: none;
+        padding: 80px 32px 32px;
+        box-shadow: var(--shadow-lg);
+        transition: right var(--t-med) var(--ease);
+        z-index: 999;
       }
 
-      .nav-links.active {
-        display: flex;
-      }
-
-      .hero-grid,
-      .contact-wrapper {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 130px;
-      }
-
-      .steps {
-        grid-template-columns: 1fr;
-      }
+      .nav-links.active { right: 0; }
+      .steps-track, .services-grid { grid-template-columns: 1fr; }
+      .steps-track::before { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
-      .section {
-        padding: 70px 0;
-      }
+      .problems-grid { grid-template-columns: 1fr 1fr; }
+      .hero-social-proof { gap: 16px; }
+      .proof-divider { display: none; }
+      .form-card { padding: 24px; }
+      :root { --sp-xl: 72px; }
+    }
 
-      .cards-grid,
-      .services-grid,
-      .mini-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero h1 {
-        letter-spacing: -0.03em;
-      }
-
-      .hero-card,
-      .form-card {
-        padding: 22px;
-        border-radius: 24px;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .footer-content {
-        justify-content: center;
-        text-align: center;
-      }
+    @media (max-width: 420px) {
+      .problems-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- =============================
-        Header / Navigation
-  ============================= -->
-  <header>
+  <!-- HEADER -->
+  <header id="siteHeader">
     <div class="container navbar">
-      <a href="#home" class="logo">
-        <span class="logo-icon"><i class="fa-solid fa-rocket"></i></span>
+      <a href="#home" class="logo" aria-label="Launch Pad home">
+        <span class="logo-mark"><i class="fa-solid fa-rocket"></i></span>
         Launch Pad
       </a>
 
-      <ul class="nav-links" id="navLinks">
+      <ul class="nav-links" id="navLinks" role="navigation" aria-label="Main navigation">
         <li><a href="#problems">Problems</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#how">How It Works</a></li>
-        <!-- RELEVANCE: Link to your LinkedIn in Header for SEO -->
-        <li><a href="https://www.linkedin.com/in/shivapandey" target="_blank" title="Shiva Pandey LinkedIn">Founder</a></li>
-        <li><a href="#contact" class="nav-cta">Get Started</a></li>
+        <li><a href="#how">Process</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact" class="btn btn-primary" style="padding:10px 20px;font-size:0.88rem">Start</a></li>
       </ul>
 
-      <div class="menu-btn" id="menuBtn">
-        <i class="fa-solid fa-bars"></i>
-      </div>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+        <i class="fa-solid fa-bars" id="menuIcon"></i>
+      </button>
     </div>
   </header>
 
-  <!-- =============================
-        Hero Section
-  ============================= -->
+  <!-- HERO -->
   <section class="hero" id="home">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <div class="badge">
-          <i class="fa-solid fa-lightbulb"></i>
-          Startup guidance by Shiva Pandey
-        </div>
-
-        <h1>Have an idea? Let’s turn it into a <span class="gradient-text">startup.</span></h1>
-
-        <p>
-          Launch Pad helps students, creators, and entrepreneurs validate ideas and become investor-ready. Founded by Shiva Pandey to bridge the gap between concept and execution.
-        </p>
-
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary">
-            Start Your Idea Journey
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-          <a href="#how" class="btn btn-outline">See How It Works</a>
-        </div>
+    <div class="hero-inner container">
+      <div class="hero-eyebrow reveal">
+        <i class="fa-solid fa-seedling"></i>
+        For Students & First-Time Founders
       </div>
 
-      <div class="hero-card">
-        <div class="startup-card">
-          <div class="startup-card-top">
-            <h3>Idea Readiness</h3>
-            <span class="status">On Track</span>
-          </div>
+      <h1 class="reveal reveal-delay-1">
+        Turn your idea into<br><em>a clear startup plan.</em>
+      </h1>
 
-          <div class="progress-box">
-            <p>Validation Progress</p>
-            <div class="progress-bar">
-              <div class="progress-fill"></div>
-            </div>
-          </div>
+      <p class="hero-sub reveal reveal-delay-2">
+        Launch Pad helps early founders validate ideas, understand next steps, and prepare for pitch conversations without fake promises or confusing startup jargon.
+      </p>
 
-          <div class="mini-grid">
-            <div class="mini-item">
-              <strong>01</strong>
-              <span>Idea Review</span>
-            </div>
-            <div class="mini-item">
-              <strong>02</strong>
-              <span>Market Check</span>
-            </div>
-            <div class="mini-item">
-              <strong>03</strong>
-              <span>Roadmap</span>
-            </div>
-            <div class="mini-item">
-              <strong>04</strong>
-              <span>Investor Prep</span>
-            </div>
-          </div>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#contact" class="btn btn-primary">
+          Submit My Idea
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="#how" class="btn btn-ghost">See the Process</a>
+      </div>
+
+      <div class="hero-social-proof reveal reveal-delay-4">
+        <div class="proof-item">
+          <span class="proof-number">Early</span>
+          <span class="proof-label">Founder Feedback in Progress</span>
+        </div>
+        <div class="proof-divider" aria-hidden="true"></div>
+        <div class="proof-item">
+          <span class="proof-number">3–5</span>
+          <span class="proof-label">Days to Initial Feedback</span>
+        </div>
+        <div class="proof-divider" aria-hidden="true"></div>
+        <div class="proof-item">
+          <span class="proof-number">Global</span>
+          <span class="proof-label">Open to Early Users</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- =============================
-        Problem Section
-  ============================= -->
-  <section class="section" id="problems">
+  <!-- PROBLEMS -->
+  <section class="section problem-section" id="problems">
     <div class="container">
       <div class="section-heading">
-        <span>The Problem</span>
-        <h2>Many people have ideas, but don’t know the next step.</h2>
-        <p>Launch Pad helps remove confusion by giving practical direction from idea stage to startup execution.</p>
+        <span class="section-label">The Problem</span>
+        <h2>Many ideas fail early because they start without clarity.</h2>
+        <p class="subtext">Not always because the idea is bad, but because beginners often start without validation, roadmap, or clear execution steps.</p>
       </div>
 
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-          <h3>No idea validation</h3>
-          <p>People build without checking if customers actually need the solution.</p>
+      <div class="problems-grid">
+        <div class="problem-card reveal">
+          <div class="problem-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+          <h3>No real validation</h3>
+          <p>Many founders build before checking whether the problem is real and whether people actually care.</p>
         </div>
 
-        <div class="card">
-          <div class="card-icon"><i class="fa-solid fa-map"></i></div>
-          <h3>No business roadmap</h3>
-          <p>Founders often lack a clear step-by-step plan to move forward.</p>
+        <div class="problem-card reveal reveal-delay-1">
+          <div class="problem-icon"><i class="fa-solid fa-map"></i></div>
+          <h3>No clear roadmap</h3>
+          <p>A big idea without a step-by-step plan becomes confusing very quickly.</p>
         </div>
 
-        <div class="card">
-          <div class="card-icon"><i class="fa-solid fa-file-signature"></i></div>
-          <h3>No registration knowledge</h3>
-          <p>Documentation, registration, and compliance become confusing early barriers.</p>
+        <div class="problem-card reveal reveal-delay-2">
+          <div class="problem-icon"><i class="fa-solid fa-file-signature"></i></div>
+          <h3>Documentation confusion</h3>
+          <p>Basic documents, registrations, and pitch material can feel complicated for first-time founders.</p>
         </div>
 
-        <div class="card">
-          <div class="card-icon"><i class="fa-solid fa-handshake"></i></div>
-          <h3>No investor guidance</h3>
-          <p>Many ideas fail to communicate business potential clearly to investors.</p>
+        <div class="problem-card reveal reveal-delay-3">
+          <div class="problem-icon"><i class="fa-solid fa-comments"></i></div>
+          <h3>Weak pitch clarity</h3>
+          <p>Many founders cannot explain the problem, solution, users, and business model clearly.</p>
         </div>
 
-        <div class="card">
-          <div class="card-icon"><i class="fa-solid fa-signs-post"></i></div>
-          <h3>Confusion on next steps</h3>
-          <p>People know the idea, but not the correct action to take next.</p>
+        <div class="problem-card reveal reveal-delay-4">
+          <div class="problem-icon"><i class="fa-solid fa-signs-post"></i></div>
+          <h3>Stuck on next steps</h3>
+          <p>The biggest question is often simple: what should I do next?</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- =============================
-        Services Section
-  ============================= -->
-  <section class="section services" id="services">
+  <!-- SERVICES -->
+  <section class="section" id="services">
     <div class="container">
-      <div class="section-heading">
-        <span>Our Services</span>
-        <h2>Everything you need to move from idea to execution.</h2>
-        <p>We support early-stage founders with practical guidance, documentation help, and investor preparation.</p>
+      <div class="section-heading reveal">
+        <span class="section-label">What We Do</span>
+        <h2>Four simple ways we help early founders move forward.</h2>
+        <p class="subtext">The goal is not to promise funding. The goal is to give you clarity, structure, and a better first direction.</p>
       </div>
 
       <div class="services-grid">
-        <div class="service-card">
-          <div class="card-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="service-card reveal">
+          <span class="service-number" aria-hidden="true">01</span>
+          <div class="service-icon"><i class="fa-solid fa-circle-check"></i></div>
           <h3>Idea Validation</h3>
-          <p>Understand the problem, target users, market need, and whether your idea has real potential.</p>
+          <p>We help you check whether your idea solves a real problem, who the users are, and what assumptions need testing first.</p>
+          <div class="service-tags">
+            <span class="tag">Problem Check</span>
+            <span class="tag">User Clarity</span>
+            <span class="tag">Assumption Testing</span>
+          </div>
         </div>
 
-        <div class="service-card">
-          <div class="card-icon"><i class="fa-solid fa-compass"></i></div>
-          <h3>Startup Guidance</h3>
-          <p>Get a simple business roadmap with clear actions for product, customers, and growth.</p>
+        <div class="service-card reveal reveal-delay-1">
+          <span class="service-number" aria-hidden="true">02</span>
+          <div class="service-icon"><i class="fa-solid fa-compass"></i></div>
+          <h3>Startup Roadmap</h3>
+          <p>We convert your raw idea into practical next steps: what to research, what to build first, and how to avoid unnecessary work.</p>
+          <div class="service-tags">
+            <span class="tag">MVP Direction</span>
+            <span class="tag">90-Day Plan</span>
+            <span class="tag">Execution Steps</span>
+          </div>
         </div>
 
-        <div class="service-card">
-          <div class="card-icon"><i class="fa-solid fa-folder-open"></i></div>
-          <h3>Documentation Help</h3>
-          <p>Support for business documents, registration preparation, pitch material, and basic compliance.</p>
+        <div class="service-card reveal reveal-delay-2">
+          <span class="service-number" aria-hidden="true">03</span>
+          <div class="service-icon"><i class="fa-solid fa-folder-open"></i></div>
+          <h3>Documentation Support</h3>
+          <p>We guide you with basic startup documents like idea notes, one-page plans, pitch outlines, and registration direction when needed.</p>
+          <div class="service-tags">
+            <span class="tag">One-Page Plan</span>
+            <span class="tag">Pitch Outline</span>
+            <span class="tag">Basic Docs</span>
+          </div>
         </div>
 
-        <div class="service-card">
-          <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
-          <h3>Investor Readiness</h3>
-          <p>Prepare your pitch, business model, financial basics, and story for investor conversations.</p>
+        <div class="service-card reveal reveal-delay-3">
+          <span class="service-number" aria-hidden="true">04</span>
+          <div class="service-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Pitch Preparation</h3>
+          <p>We help you prepare for early pitch conversations by making your problem, solution, target users, and next milestones clearer.</p>
+          <div class="service-tags">
+            <span class="tag">Pitch Clarity</span>
+            <span class="tag">Founder Story</span>
+            <span class="tag">Milestones</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- =============================
-        How It Works Section
-  ============================= -->
-  <section class="section" id="how">
+  <!-- HOW IT WORKS -->
+  <section class="section how-bg" id="how">
     <div class="container">
-      <div class="section-heading">
-        <span>How It Works</span>
-        <h2>A simple 3-step process for first-time founders.</h2>
-        <p>Start with your idea. We help you understand, improve, and build it with confidence.</p>
+      <div class="section-heading reveal">
+        <span class="section-label">The Process</span>
+        <h2>From raw idea to clearer startup direction in 3 steps.</h2>
+        <p class="subtext">Simple, honest, and beginner-friendly.</p>
       </div>
 
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
+      <div class="steps-track">
+        <div class="step reveal">
+          <div class="step-circle">1</div>
           <h3>Submit your idea</h3>
-          <p>Share your startup idea, problem statement, and what kind of help you need.</p>
+          <p>Share what you are trying to build, who it is for, and where you are stuck.</p>
+          <div class="step-outcome"><i class="fa-solid fa-check"></i> Takes 5 minutes</div>
         </div>
 
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>We analyze and guide</h3>
-          <p>We study your idea and suggest validation steps, roadmap, documents, and improvements.</p>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-circle">2</div>
+          <h3>Get structured feedback</h3>
+          <p>We review the idea and give practical feedback on problem clarity, users, MVP direction, and next steps.</p>
+          <div class="step-outcome"><i class="fa-solid fa-check"></i> 3–5 days</div>
         </div>
 
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>You start building</h3>
-          <p>Use the guidance to build your MVP, prepare documents, and become investor-ready.</p>
+        <div class="step reveal reveal-delay-4">
+          <div class="step-circle">3</div>
+          <h3>Move forward with clarity</h3>
+          <p>You get a cleaner direction before spending serious time, money, or effort.</p>
+          <div class="step-outcome"><i class="fa-solid fa-check"></i> Beginner friendly</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- =============================
-        Contact Section
-  ============================= -->
-  <section class="section contact" id="contact">
-    <div class="container contact-wrapper">
-      <div class="contact-info">
-        <span class="badge"><i class="fa-solid fa-paper-plane"></i> Start today</span>
-        <h2>Ready to turn your idea into a real startup?</h2>
+  <!-- ABOUT -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="section-heading reveal" style="text-align:left;max-width:100%;margin-bottom:var(--sp-md)">
+        <span class="section-label">About Launch Pad</span>
+        <h2>Built by a student founder solving early-stage confusion.</h2>
+        <p class="subtext">Launch Pad is currently in its early stage and is collecting feedback from students, freshers, and first-time founders.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card reveal">
+          <h3>Early-stage and honest.</h3>
+          <p>
+            Launch Pad is not claiming to be a big accelerator or a guaranteed funding platform. It is a practical support system for beginners who want to understand whether their idea has potential and what to do next.
+          </p>
+        </div>
+
+        <div class="value-list reveal reveal-delay-2">
+          <div class="value-row">
+            <div class="value-icon"><i class="fa-solid fa-bullseye"></i></div>
+            <div class="value-content">
+              <h4>Clarity over hype</h4>
+              <p>We focus on clear thinking, realistic planning, and practical next steps.</p>
+            </div>
+          </div>
+
+          <div class="value-row">
+            <div class="value-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="value-content">
+              <h4>Honest feedback</h4>
+              <p>If an idea needs improvement or a pivot, the feedback will be direct and useful.</p>
+            </div>
+          </div>
+
+          <div class="value-row">
+            <div class="value-icon"><i class="fa-solid fa-list-check"></i></div>
+            <div class="value-content">
+              <h4>Actionable roadmap</h4>
+              <p>Instead of only giving motivation, we help break the idea into steps.</p>
+            </div>
+          </div>
+
+          <div class="value-row">
+            <div class="value-icon"><i class="fa-solid fa-user-graduate"></i></div>
+            <div class="value-content">
+              <h4>Beginner-first approach</h4>
+              <p>Designed for students, freshers, and first-time founders who are starting from zero.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container contact-grid">
+      <div class="contact-left reveal">
+        <span class="section-label">Start Today</span>
+        <h2>Have an idea? Get early feedback.</h2>
         <p>
-          Tell us about your idea and the support you need. Launch Pad will help you take the next practical step.
+          Tell us about your idea and where you are stuck. We will review it and respond with practical guidance.
         </p>
 
-        <div class="contact-points">
-          <div class="contact-point"><i class="fa-solid fa-check"></i> Practical idea validation</div>
-          <div class="contact-point"><i class="fa-solid fa-check"></i> Simple startup roadmap</div>
-          <div class="contact-point"><i class="fa-solid fa-check"></i> Investor-focused preparation</div>
+        <div class="checklist">
+          <div class="check-item">
+            <span class="check-dot"><i class="fa-solid fa-check"></i></span>
+            Idea validation feedback
+          </div>
+          <div class="check-item">
+            <span class="check-dot"><i class="fa-solid fa-check"></i></span>
+            Beginner-friendly startup roadmap
+          </div>
+          <div class="check-item">
+            <span class="check-dot"><i class="fa-solid fa-check"></i></span>
+            Pitch conversation preparation
+          </div>
+          <div class="check-item">
+            <span class="check-dot"><i class="fa-solid fa-check"></i></span>
+            Early access founder list
+          </div>
+        </div>
+
+        <div class="calendar-placeholder">
+          <div class="calendar-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+          <h3>Join the early founder list</h3>
+          <p>Want updates, templates, and early access? Submit your email through the form.</p>
+          <a href="#contactForm" class="btn btn-dark">
+            <i class="fa-solid fa-arrow-down"></i>
+            Go to Form
+          </a>
         </div>
       </div>
 
-      <form class="form-card" id="contactForm" action="https://formspree.io/f/mgorgjpg" method="POST">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Enter your name" />
-          <small class="error-message">Please enter your name.</small>
-        </div>
+      <div class="form-card reveal reveal-delay-2">
+        <h3>Submit your idea</h3>
+        <form id="contactForm" action="https://formspree.io/f/mgorgjpg" method="POST" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="first_name" placeholder="Arjun" autocomplete="given-name">
+              <small class="error-msg">Please enter your first name.</small>
+            </div>
 
-        <div class="form-group">
-          <label for="contactDetail">Email or WhatsApp</label>
-          <input type="text" id="contactDetail" name="email_or_whatsapp" placeholder="Enter your email or WhatsApp number" />
-          <small class="error-message">Please enter a valid email or WhatsApp number.</small>
-        </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="last_name" placeholder="Mehta" autocomplete="family-name">
+              <small class="error-msg">Please enter your last name.</small>
+            </div>
+          </div>
 
-        <div class="form-group">
-          <label for="idea">Idea Description</label>
-          <textarea id="idea" name="idea_description" placeholder="Briefly describe your startup idea"></textarea>
-          <small class="error-message">Please describe your idea.</small>
-        </div>
+          <div class="form-group">
+            <label for="contactDetail">Email or WhatsApp</label>
+            <input type="text" id="contactDetail" name="email_or_whatsapp" placeholder="email@domain.com or +91 98765 43210" autocomplete="email">
+            <small class="error-msg">Please enter a valid email or phone number.</small>
+          </div>
 
-        <div class="form-group">
-          <label for="help">What help do you need?</label>
-          <input type="text" id="help" name="help_needed" placeholder="Example: validation, registration, investor pitch" />
-          <small class="error-message">Please mention what help you need.</small>
-        </div>
+          <div class="form-group">
+            <label for="stage">Where are you right now?</label>
+            <select id="stage" name="stage">
+              <option value="" disabled selected>Select your current stage</option>
+              <option value="just-an-idea">Just an idea, haven't started</option>
+              <option value="researching">Researching and validating</option>
+              <option value="building-mvp">Building an MVP</option>
+              <option value="launched">Launched, looking for traction</option>
+              <option value="pitch-prep">Preparing to pitch or explain the idea</option>
+            </select>
+          </div>
 
-        <button type="submit" class="btn btn-primary" style="width: 100%;">
-          Contact Us
-          <i class="fa-solid fa-arrow-right"></i>
-        </button>
+          <div class="form-group">
+            <label for="idea">Describe your idea</label>
+            <textarea id="idea" name="idea_description" placeholder="What problem are you solving? Who is it for? What is your possible solution?"></textarea>
+            <small class="error-msg">Please describe your idea in at least 15 characters.</small>
+          </div>
 
-        <div class="success-message" id="successMessage">
-          Thank you! Your idea request has been submitted successfully.
-        </div>
-      </form>
+          <div class="form-group">
+            <label for="help">What is your biggest challenge right now?</label>
+            <input type="text" id="help" name="challenge" placeholder="e.g. I don't know if people will use this">
+            <small class="error-msg">Please tell us your main challenge.</small>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">
+            Send My Idea
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+
+          <p style="font-size:0.78rem;color:var(--ink-40);text-align:center;margin-top:12px;">
+            <i class="fa-solid fa-lock" style="font-size:0.7rem;"></i>
+            Your idea will not be shared publicly without permission.
+          </p>
+
+          <div class="success-banner" id="successBanner">
+            <i class="fa-solid fa-circle-check"></i>
+            Thank you! Your idea has been submitted. We will review it and respond soon.
+          </div>
+        </form>
+      </div>
     </div>
   </section>
 
-  <!-- =============================
-        Footer
-  ============================= -->
+  <!-- FOOTER -->
   <footer>
-    <div class="container footer-content">
-      <p>Launch Pad — From Idea to Startup</p>
-      <!-- RELEVANCE: Personal branding link in Footer -->
-      <p>By <a href="https://www.linkedin.com/in/shivapandey" target="_blank" style="color: #60a5fa; text-decoration: underline;">Shiva Pandey</a></p>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom:12px;">
+            <span class="logo-mark"><i class="fa-solid fa-rocket"></i></span>
+            Launch Pad
+          </div>
+          <p>Helping students and first-time founders move from raw idea to clearer startup direction.</p>
+        </div>
 
-      <div class="socials">
-        <!-- Update this href with your actual LinkedIn URL -->
-        <a href="https://www.linkedin.com/in/shivapandey" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <div class="footer-links">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="#problems">Problems</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#how">Process</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Focus</h4>
+          <ul>
+            <li><a href="#services">Idea Validation</a></li>
+            <li><a href="#services">Startup Roadmap</a></li>
+            <li><a href="#services">Pitch Preparation</a></li>
+            <li><a href="#contact">Early Feedback</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Status</h4>
+          <ul>
+            <li><a href="#about">Early Stage</a></li>
+            <li><a href="#contact">Open for Feedback</a></li>
+            <li><a href="#contact">Global Early Users</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Launch Pad. All rights reserved.</p>
+        <div class="socials">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
       </div>
     </div>
   </footer>
 
+  <!-- JAVASCRIPT -->
   <script>
+    const header = document.getElementById('siteHeader');
+
+    const scrollHandler = () => {
+      header.classList.toggle('scrolled', window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    scrollHandler();
+
     const menuBtn = document.getElementById('menuBtn');
+    const menuIcon = document.getElementById('menuIcon');
     const navLinks = document.getElementById('navLinks');
+    let menuOpen = false;
 
     menuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+      menuOpen = !menuOpen;
+      navLinks.classList.toggle('active', menuOpen);
+      menuIcon.className = menuOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+      menuBtn.setAttribute('aria-expanded', menuOpen);
     });
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
+        menuOpen = false;
         navLinks.classList.remove('active');
+        menuIcon.className = 'fa-solid fa-bars';
+        menuBtn.setAttribute('aria-expanded', false);
       });
     });
 
-    const contactForm = document.getElementById('contactForm');
-    const successMessage = document.getElementById('successMessage');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
 
-    contactForm.addEventListener('submit', function(event) {
-      const name = document.getElementById('name');
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const form = document.getElementById('contactForm');
+    const successBanner = document.getElementById('successBanner');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const fname = document.getElementById('fname');
+      const lname = document.getElementById('lname');
       const contactDetail = document.getElementById('contactDetail');
       const idea = document.getElementById('idea');
       const help = document.getElementById('help');
 
-      let isValid = true;
+      form.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
 
-      document.querySelectorAll('.error-message').forEach(error => {
-        error.style.display = 'none';
-      });
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phonePattern = /^[+\d\s\-]{7,20}$/;
+      let valid = true;
 
-      if (name.value.trim() === '') {
-        showError(name);
-        isValid = false;
-      }
+      const showErr = (input) => {
+        input.parentElement.querySelector('.error-msg').style.display = 'block';
+        valid = false;
+      };
+
+      if (!fname.value.trim()) showErr(fname);
+      if (!lname.value.trim()) showErr(lname);
 
       const contactValue = contactDetail.value.trim();
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const phonePattern = /^[0-9]{10,15}$/;
-
-      if (!emailPattern.test(contactValue) && !phonePattern.test(contactValue)) {
-        showError(contactDetail);
-        isValid = false;
+      if (!emailPattern.test(contactValue) && !phonePattern.test(contactValue.replace(/\s/g, ''))) {
+        showErr(contactDetail);
       }
 
-      if (idea.value.trim().length < 10) {
-        showError(idea);
-        isValid = false;
-      }
+      if (idea.value.trim().length < 15) showErr(idea);
+      if (!help.value.trim()) showErr(help);
 
-      if (help.value.trim() === '') {
-        showError(help);
-        isValid = false;
-      }
+      if (!valid) return;
 
-      if (!isValid) {
-        event.preventDefault();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.reset();
+          successBanner.style.display = 'block';
+          submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Sent!';
+          submitBtn.style.background = 'var(--green)';
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Send My Idea <i class="fa-solid fa-arrow-right"></i>';
+        alert('Something went wrong. Please try again.');
       }
     });
-
-    function showError(inputElement) {
-      const error = inputElement.parentElement.querySelector('.error-message');
-      error.style.display = 'block';
-    }
   </script>
 </body>
 </html>
