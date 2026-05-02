@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Launch Pad — From Idea to Startup</title>
+  
+  <!-- SEO & LinkedIn Ranking Tags -->
+  <title>Shiva Pandey | Founder of Launch Pad</title>
+  <meta name="description" content="Launch Pad: Execution-as-a-Service by Shiva Pandey. We help first-time founders in Mumbai validate ideas and become investor-ready.">
+  <link rel="canonical" href="https://shiva09-art.github.io/launch-pad/" />
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +19,7 @@
 
   <style>
     /* =============================
-       Global Styles
+        Global Styles
     ============================= */
     * {
       margin: 0;
@@ -98,7 +102,7 @@
     }
 
     /* =============================
-       Navbar
+        Navbar
     ============================= */
     header {
       width: 100%;
@@ -173,7 +177,7 @@
     }
 
     /* =============================
-       Hero Section
+        Hero Section
     ============================= */
     .hero {
       min-height: 100vh;
@@ -358,7 +362,7 @@
     }
 
     /* =============================
-       Cards
+        Cards
     ============================= */
     .cards-grid {
       display: grid;
@@ -405,7 +409,7 @@
     }
 
     /* =============================
-       Services
+        Services
     ============================= */
     .services {
       background: var(--light);
@@ -443,7 +447,7 @@
     }
 
     /* =============================
-       How It Works
+        How It Works
     ============================= */
     .steps {
       display: grid;
@@ -487,7 +491,7 @@
     }
 
     /* =============================
-       Contact
+        Contact
     ============================= */
     .contact {
       background:
@@ -597,7 +601,7 @@
     }
 
     /* =============================
-       Footer
+        Footer
     ============================= */
     footer {
       padding: 34px 0;
@@ -641,7 +645,7 @@
     }
 
     /* =============================
-       Responsive Design
+        Responsive Design
     ============================= */
     @media (max-width: 1040px) {
       .cards-grid {
@@ -724,7 +728,7 @@
 <body>
 
   <!-- =============================
-       Header / Navigation
+        Header / Navigation
   ============================= -->
   <header>
     <div class="container navbar">
@@ -737,6 +741,8 @@
         <li><a href="#problems">Problems</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#how">How It Works</a></li>
+        <!-- RELEVANCE: Link to your LinkedIn in Header for SEO -->
+        <li><a href="https://www.linkedin.com/in/shivapandey" target="_blank" title="Shiva Pandey LinkedIn">Founder</a></li>
         <li><a href="#contact" class="nav-cta">Get Started</a></li>
       </ul>
 
@@ -747,20 +753,20 @@
   </header>
 
   <!-- =============================
-       Hero Section
+        Hero Section
   ============================= -->
   <section class="hero" id="home">
     <div class="container hero-grid">
       <div class="hero-content">
         <div class="badge">
           <i class="fa-solid fa-lightbulb"></i>
-          Startup guidance for first-time founders
+          Startup guidance by Shiva Pandey
         </div>
 
         <h1>Have an idea? Let’s turn it into a <span class="gradient-text">startup.</span></h1>
 
         <p>
-          Launch Pad helps students, creators, and entrepreneurs validate ideas and become investor-ready.
+          Launch Pad helps students, creators, and entrepreneurs validate ideas and become investor-ready. Founded by Shiva Pandey to bridge the gap between concept and execution.
         </p>
 
         <div class="hero-buttons">
@@ -810,7 +816,7 @@
   </section>
 
   <!-- =============================
-       Problem Section
+        Problem Section
   ============================= -->
   <section class="section" id="problems">
     <div class="container">
@@ -855,7 +861,7 @@
   </section>
 
   <!-- =============================
-       Services Section
+        Services Section
   ============================= -->
   <section class="section services" id="services">
     <div class="container">
@@ -894,7 +900,7 @@
   </section>
 
   <!-- =============================
-       How It Works Section
+        How It Works Section
   ============================= -->
   <section class="section" id="how">
     <div class="container">
@@ -927,7 +933,7 @@
   </section>
 
   <!-- =============================
-       Contact Section
+        Contact Section
   ============================= -->
   <section class="section contact" id="contact">
     <div class="container contact-wrapper">
@@ -945,14 +951,6 @@
         </div>
       </div>
 
-      <!--
-        IMPORTANT:
-        To receive form submissions in your email:
-        1. Go to https://formspree.io/
-        2. Create a free account
-        3. Create a new form
-        4. Replace YOUR_FORM_ID below with your Formspree form ID
-      -->
       <form class="form-card" id="contactForm" action="https://formspree.io/f/mgorgjpg" method="POST">
         <div class="form-group">
           <label for="name">Name</label>
@@ -991,15 +989,17 @@
   </section>
 
   <!-- =============================
-       Footer
+        Footer
   ============================= -->
   <footer>
     <div class="container footer-content">
       <p>Launch Pad — From Idea to Startup</p>
-      <p>contact@launchpad.com</p>
+      <!-- RELEVANCE: Personal branding link in Footer -->
+      <p>By <a href="https://www.linkedin.com/in/shivapandey" target="_blank" style="color: #60a5fa; text-decoration: underline;">Shiva Pandey</a></p>
 
       <div class="socials">
-        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <!-- Update this href with your actual LinkedIn URL -->
+        <a href="https://www.linkedin.com/in/shivapandey" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
       </div>
@@ -1007,9 +1007,6 @@
   </footer>
 
   <script>
-    /* =============================
-       Mobile Menu Toggle
-    ============================= */
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
 
@@ -1017,22 +1014,16 @@
       navLinks.classList.toggle('active');
     });
 
-    // Close mobile menu when a nav link is clicked
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('active');
       });
     });
 
-    /* =============================
-       Basic Form Validation
-    ============================= */
     const contactForm = document.getElementById('contactForm');
     const successMessage = document.getElementById('successMessage');
 
     contactForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-
       const name = document.getElementById('name');
       const contactDetail = document.getElementById('contactDetail');
       const idea = document.getElementById('idea');
@@ -1040,18 +1031,15 @@
 
       let isValid = true;
 
-      // Hide all previous error messages
       document.querySelectorAll('.error-message').forEach(error => {
         error.style.display = 'none';
       });
 
-      // Name validation
       if (name.value.trim() === '') {
         showError(name);
         isValid = false;
       }
 
-      // Email or WhatsApp validation
       const contactValue = contactDetail.value.trim();
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const phonePattern = /^[0-9]{10,15}$/;
@@ -1061,25 +1049,21 @@
         isValid = false;
       }
 
-      // Idea validation
       if (idea.value.trim().length < 10) {
         showError(idea);
         isValid = false;
       }
 
-      // Help validation
       if (help.value.trim() === '') {
         showError(help);
         isValid = false;
       }
 
-      if (isValid) {
-        // Submit form data to Formspree so you receive it by email
-        contactForm.submit();
+      if (!isValid) {
+        event.preventDefault();
       }
     });
 
-    // Show error message below input
     function showError(inputElement) {
       const error = inputElement.parentElement.querySelector('.error-message');
       error.style.display = 'block';
