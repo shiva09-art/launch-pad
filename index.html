@@ -1,159 +1,1722 @@
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  sendEmailVerification,
-  signOut,
-  onAuthStateChanged,
-  reload
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-// Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyB5_86-5HiNIYfQTw6VsmiW-Btbk34JoG4",
-  authDomain: "launch-pad-8c255.firebaseapp.com",
-  projectId: "launch-pad-8c255",
-  storageBucket: "launch-pad-8c255.firebasestorage.app",
-  messagingSenderId: "130042558203",
-  appId: "1:130042558203:web:e50ed33b932bd696c0225e",
-  measurementId: "G-HGL3P8FN1Q"
-};
+  <!-- ===================== SEO ===================== -->
+  <title>Launch Pad | Turn Your Idea Into a Clear Startup Plan</title>
+  <meta name="description" content="Launch Pad helps students and first-time founders validate ideas, understand next steps, and prepare for pitch conversations.">
+  <meta name="keywords" content="startup idea validation, student founder help, first-time founder, startup roadmap, pitch preparation, Launch Pad startup">
+  <link rel="canonical" href="https://shiva09-art.github.io/launch-pad/" />
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+  <!-- Open Graph -->
+  <meta property="og:title" content="Launch Pad | Turn Your Idea Into a Clear Startup Plan">
+  <meta property="og:description" content="For students and first-time founders who have ideas but need clarity, structure, and next steps.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shiva09-art.github.io/launch-pad/">
 
-// ===== EXISTING UI =====
-const form = document.getElementById("contactForm");
-const successBanner = document.getElementById("successBanner");
-
-// ===== ADD AUTH UI =====
-form.insertAdjacentHTML("beforebegin", `
-<div style="border:1px solid #eee;padding:20px;border-radius:12px;margin-bottom:20px;">
-  <h3>Email Verification</h3>
-
-  <input id="authEmail" placeholder="Email" style="width:100%;padding:10px;margin-bottom:8px;">
-  <input id="authPassword" type="password" placeholder="Password" style="width:100%;padding:10px;margin-bottom:8px;">
-
-  <button id="signupBtn" style="width:100%;margin-bottom:6px;">Sign Up</button>
-  <button id="loginBtn" style="width:100%;margin-bottom:6px;">Login</button>
-  <button id="resendBtn" style="width:100%;display:none;margin-bottom:6px;">Resend Verification</button>
-  <button id="logoutBtn" style="width:100%;display:none;">Logout</button>
-
-  <p id="authStatus" style="font-size:12px;color:#666;margin-top:10px;">
-    Verify email to unlock form
-  </p>
-</div>
-`);
-
-const email = document.getElementById("authEmail");
-const pass = document.getElementById("authPassword");
-const signupBtn = document.getElementById("signupBtn");
-const loginBtn = document.getElementById("loginBtn");
-const resendBtn = document.getElementById("resendBtn");
-const logoutBtn = document.getElementById("logoutBtn");
-const status = document.getElementById("authStatus");
-
-// ===== LOCK FORM =====
-function lockForm() {
-  form.style.opacity = "0.4";
-  form.style.pointerEvents = "none";
-}
-
-function unlockForm() {
-  form.style.opacity = "1";
-  form.style.pointerEvents = "auto";
-}
-
-lockForm();
-
-// ===== AUTH LOGIC =====
-
-// SIGNUP
-signupBtn.onclick = async () => {
-  try {
-    const user = await createUserWithEmailAndPassword(auth, email.value, pass.value);
-    await sendEmailVerification(user.user);
-    status.innerText = "Verification email sent. Check inbox.";
-  } catch (e) {
-    alert(e.message);
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Launch Pad",
+    "description": "Startup guidance for students and first-time founders. Idea validation, startup roadmap, documentation support, and pitch preparation.",
+    "url": "https://shiva09-art.github.io/launch-pad/",
+    "areaServed": "Global",
+    "serviceType": ["Idea Validation", "Startup Roadmap", "Business Documentation", "Pitch Preparation"],
+    "priceRange": "Free early access"
   }
-};
+  </script>
 
-// LOGIN
-loginBtn.onclick = async () => {
-  try {
-    await signInWithEmailAndPassword(auth, email.value, pass.value);
-  } catch (e) {
-    alert(e.message);
-  }
-};
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-// RESEND
-resendBtn.onclick = async () => {
-  await sendEmailVerification(auth.currentUser);
-  status.innerText = "Verification email sent again.";
-};
+  <style>
+    :root {
+      --ink: #0a0a0f;
+      --ink-80: #1a1a24;
+      --ink-60: #3d3d52;
+      --ink-40: #8888a0;
+      --ink-10: #f2f2f8;
+      --ink-05: #f9f9fc;
+      --accent: #ff4c1f;
+      --accent-dim: #ff4c1f22;
+      --accent-mid: #ff4c1f55;
+      --green: #00c26b;
+      --green-dim: #00c26b22;
+      --white: #ffffff;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --sp-sm: 16px;
+      --sp-md: 32px;
+      --sp-lg: 64px;
+      --sp-xl: 96px;
+      --r-sm: 8px;
+      --r-md: 16px;
+      --r-lg: 28px;
+      --r-full: 999px;
+      --shadow-md: 0 8px 28px rgba(10,10,15,0.10);
+      --shadow-lg: 0 24px 60px rgba(10,10,15,0.14);
+      --shadow-accent: 0 20px 50px rgba(255,76,31,0.22);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --t-fast: 180ms;
+      --t-med: 320ms;
+      --t-slow: 600ms;
+    }
 
-// LOGOUT
-logoutBtn.onclick = async () => {
-  await signOut(auth);
-};
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-// STATE CHANGE
-onAuthStateChanged(auth, async (user) => {
-  if (!user) {
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    .section { padding: var(--sp-xl) 0; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--sp-sm);
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin: 0 auto var(--sp-lg);
+      text-align: center;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-serif);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+      color: var(--ink);
+    }
+
+    .subtext {
+      font-size: 1.05rem;
+      color: var(--ink-40);
+      margin-top: 14px;
+      font-weight: 400;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 80ms; }
+    .reveal-delay-2 { transition-delay: 160ms; }
+    .reveal-delay-3 { transition-delay: 240ms; }
+    .reveal-delay-4 { transition-delay: 320ms; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: var(--r-full);
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 28px 60px rgba(255,76,31,0.35);
+    }
+
+    .btn-dark {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .btn-dark:hover {
+      background: var(--ink-80);
+      transform: translateY(-3px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink-10);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: background var(--t-med), box-shadow var(--t-med);
+    }
+
+    header.scrolled {
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 1px 0 rgba(10,10,15,0.08);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--ink);
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      background: var(--accent);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 1rem;
+      box-shadow: 0 8px 20px rgba(255,76,31,0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--ink-60);
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .menu-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: var(--ink);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding-top: 100px;
+      position: relative;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(10,10,15,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10,10,15,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 10%, black 40%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      text-align: center;
+      max-width: 960px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      border-radius: var(--r-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 28px;
+      letter-spacing: 0.03em;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      line-height: 0.96;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--ink-40);
+      max-width: 640px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-social-proof {
+      margin-top: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .proof-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .proof-number {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .proof-label {
+      font-size: 0.82rem;
+      color: var(--ink-40);
+      margin-top: 4px;
+    }
+
+    .proof-divider {
+      width: 1px;
+      height: 44px;
+      background: var(--ink-10);
+    }
+
+    .problem-section {
+      background: var(--ink);
+      color: var(--white);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .problem-section::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,76,31,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .problem-section h2 { color: var(--white); }
+    .problem-section .subtext { color: rgba(255,255,255,0.45); }
+
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+      margin-top: var(--sp-lg);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .problem-card {
+      padding: 32px 24px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      transition: background var(--t-med);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .problem-card:last-child { border-right: none; }
+
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--t-med) var(--ease);
+    }
+
+    .problem-card:hover::before { transform: scaleX(1); }
+    .problem-card:hover { background: rgba(255,255,255,0.06); }
+
+    .problem-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--r-sm);
+      background: rgba(255,76,31,0.15);
+      border: 1px solid rgba(255,76,31,0.3);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .problem-card h3 {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .problem-card p {
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      padding: 42px;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--ink-10);
+      background: var(--ink-05);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(255,76,31,0.2);
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity var(--t-med);
+    }
+
+    .service-card:hover::after { opacity: 1; }
+
+    .service-number {
+      font-family: var(--font-serif);
+      font-size: 5rem;
+      color: var(--ink-10);
+      line-height: 1;
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      pointer-events: none;
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--r-md);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-size: 1.3rem;
+      margin-bottom: 24px;
+    }
+
+    .service-card h3 {
+      font-size: 1.45rem;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      color: var(--ink-40);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: var(--r-full);
+      background: var(--ink-10);
+      color: var(--ink-60);
+    }
+
+    .how-bg { background: var(--ink-05); }
+
+    .steps-track {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .steps-track::before {
+      content: '';
+      position: absolute;
+      top: 42px;
+      left: calc(100% / 6);
+      right: calc(100% / 6);
+      height: 1px;
+      background: repeating-linear-gradient(90deg, var(--ink-10) 0, var(--ink-10) 10px, transparent 10px, transparent 20px);
+    }
+
+    .step {
+      padding: 32px 36px;
+      position: relative;
+    }
+
+    .step-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--ink-10);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--ink);
+      position: relative;
+      z-index: 1;
+      transition: background var(--t-med), border-color var(--t-med), color var(--t-med);
+      margin-bottom: 28px;
+    }
+
+    .step:hover .step-circle {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .step h3 {
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      color: var(--ink-40);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .step-outcome {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--green);
+      background: var(--green-dim);
+      padding: 5px 12px;
+      border-radius: var(--r-full);
+    }
+
+    .about-section {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .about-section h2 { color: var(--white); }
+    .about-section .subtext { color: rgba(255,255,255,0.45); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .about-card {
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      padding: 34px;
+    }
+
+    .about-card h3 {
+      font-size: 1.7rem;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .about-card p {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .value-list {
+      display: grid;
+      gap: 20px;
+    }
+
+    .value-row {
+      display: flex;
+      gap: 20px;
+      padding: 24px 28px;
+      border-radius: var(--r-md);
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.03);
+      transition: background var(--t-med), border-color var(--t-med);
+    }
+
+    .value-row:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,76,31,0.3);
+    }
+
+    .value-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border-radius: var(--r-sm);
+      background: rgba(255,76,31,0.15);
+      border: 1px solid rgba(255,76,31,0.25);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .value-content h4 {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .value-content p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .contact-left h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 18px;
+    }
+
+    .contact-left p {
+      color: var(--ink-40);
+      margin-bottom: 32px;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--ink-60);
+    }
+
+    .check-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--green-dim);
+      border: 1px solid var(--green);
+      display: grid;
+      place-items: center;
+      color: var(--green);
+      font-size: 0.65rem;
+      flex-shrink: 0;
+    }
+
+    .calendar-placeholder {
+      border: 2px dashed var(--ink-10);
+      border-radius: var(--r-lg);
+      padding: 48px 32px;
+      text-align: center;
+      background: var(--ink-05);
+      margin-top: 8px;
+    }
+
+    .calendar-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--r-md);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-size: 1.6rem;
+      margin: 0 auto 20px;
+    }
+
+    .calendar-placeholder h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .calendar-placeholder p {
+      font-size: 0.9rem;
+      color: var(--ink-40);
+      margin-bottom: 24px;
+    }
+
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--ink-10);
+      border-radius: var(--r-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 24px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group { margin-bottom: 16px; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: var(--r-md);
+      border: 1.5px solid var(--ink-10);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: var(--ink-05);
+      outline: none;
+      transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(255,76,31,0.1);
+      background: var(--white);
+    }
+
+    .form-group textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .error-msg {
+      display: none;
+      font-size: 0.78rem;
+      color: #dc2626;
+      margin-top: 5px;
+    }
+
+    .success-banner {
+      display: none;
+      padding: 14px 18px;
+      background: var(--green-dim);
+      border: 1px solid var(--green);
+      border-radius: var(--r-md);
+      color: #065f46;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 16px;
+    }
+
+    footer {
+      background: var(--ink);
+      color: white;
+      padding: 48px 0 32px;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 32px;
+    }
+
+    .footer-brand .logo {
+      color: white;
+      margin-bottom: 14px;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.4);
+      max-width: 280px;
+      line-height: 1.7;
+    }
+
+    .footer-links h4 {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 16px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-links ul li a {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      transition: color var(--t-fast);
+    }
+
+    .footer-links ul li a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .socials a {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.07);
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem;
+      transition: background var(--t-fast), color var(--t-fast);
+    }
+
+    .socials a:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    @media (max-width: 1100px) {
+      .problems-grid { grid-template-columns: repeat(3, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 860px) {
+      .menu-btn { display: block; }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 260px;
+        background: var(--white);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 80px 32px 32px;
+        box-shadow: var(--shadow-lg);
+        transition: right var(--t-med) var(--ease);
+        z-index: 999;
+      }
+
+      .nav-links.active { right: 0; }
+      .steps-track, .services-grid { grid-template-columns: 1fr; }
+      .steps-track::before { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .problems-grid { grid-template-columns: 1fr 1fr; }
+      .hero-social-proof { gap: 16px; }
+      .proof-divider { display: none; }
+      .form-card { padding: 24px; }
+      :root { --sp-xl: 72px; }
+    }
+
+    @media (max-width: 420px) {
+      .problems-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Firebase Auth Box */
+    .auth-box {
+      border: 1px solid var(--ink-10);
+      border-radius: var(--r-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+      background: var(--ink-05);
+    }
+
+    .auth-box h3 {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+
+    .auth-box input {
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: var(--r-md);
+      border: 1.5px solid var(--ink-10);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: var(--white);
+      outline: none;
+      margin-bottom: 10px;
+    }
+
+    .auth-buttons {
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .auth-status {
+      font-size: 0.85rem;
+      color: var(--ink-40);
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="siteHeader">
+    <div class="container navbar">
+      <a href="#home" class="logo" aria-label="Launch Pad home">
+        <span class="logo-mark"><i class="fa-solid fa-rocket"></i></span>
+        Launch Pad
+      </a>
+
+      <ul class="nav-links" id="navLinks" role="navigation" aria-label="Main navigation">
+        <li><a href="#problems">Problems</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">Process</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact" class="btn btn-primary" style="padding:10px 20px;font-size:0.88rem">Start</a></li>
+      </ul>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+        <i class="fa-solid fa-bars" id="menuIcon"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-inner container">
+      <div class="hero-eyebrow reveal">
+        <i class="fa-solid fa-seedling"></i>
+        For Students & First-Time Founders
+      </div>
+
+      <h1 class="reveal reveal-delay-1">
+        Turn your idea into<br><em>a clear startup plan.</em>
+      </h1>
+
+      <p class="hero-sub reveal reveal-delay-2">
+        Launch Pad helps early founders validate ideas, understand next steps, and prepare for pitch conversations without fake promises or confusing startup jargon.
+      </p>
+
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#contact" class="btn btn-primary">
+          Submit My Idea
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="#how" class="btn btn-ghost">See the Process</a>
+      </div>
+
+      <div class="hero-social-proof reveal reveal-delay-4">
+        <div class="proof-item">
+          <span class="proof-number">Early</span>
+          <span class="proof-label">Founder Feedback in Progress</span>
+        </div>
+        <div class="proof-divider" aria-hidden="true"></div>
+        <div class="proof-item">
+          <span class="proof-number">3–5</span>
+          <span class="proof-label">Days to Initial Feedback</span>
+        </div>
+        <div class="proof-divider" aria-hidden="true"></div>
+        <div class="proof-item">
+          <span class="proof-number">Global</span>
+          <span class="proof-label">Open to Early Users</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMS -->
+  <section class="section problem-section" id="problems">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-label">The Problem</span>
+        <h2>Many ideas fail early because they start without clarity.</h2>
+        <p class="subtext">Not always because the idea is bad, but because beginners often start without validation, roadmap, or clear execution steps.</p>
+      </div>
+
+      <div class="problems-grid">
+        <div class="problem-card reveal">
+          <div class="problem-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+          <h3>No real validation</h3>
+          <p>Many founders build before checking whether the problem is real and whether people actually care.</p>
+        </div>
+
+        <div class="problem-card reveal reveal-delay-1">
+          <div class="problem-icon"><i class="fa-solid fa-map"></i></div>
+          <h3>No clear roadmap</h3>
+          <p>A big idea without a step-by-step plan becomes confusing very quickly.</p>
+        </div>
+
+        <div class="problem-card reveal reveal-delay-2">
+          <div class="problem-icon"><i class="fa-solid fa-file-signature"></i></div>
+          <h3>Documentation confusion</h3>
+          <p>Basic documents, registrations, and pitch material can feel complicated for first-time founders.</p>
+        </div>
+
+        <div class="problem-card reveal reveal-delay-3">
+          <div class="problem-icon"><i class="fa-solid fa-comments"></i></div>
+          <h3>Weak pitch clarity</h3>
+          <p>Many founders cannot explain the problem, solution, users, and business model clearly.</p>
+        </div>
+
+        <div class="problem-card reveal reveal-delay-4">
+          <div class="problem-icon"><i class="fa-solid fa-signs-post"></i></div>
+          <h3>Stuck on next steps</h3>
+          <p>The biggest question is often simple: what should I do next?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-heading reveal">
+        <span class="section-label">What We Do</span>
+        <h2>Four simple ways we help early founders move forward.</h2>
+        <p class="subtext">The goal is not to promise funding. The goal is to give you clarity, structure, and a better first direction.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <span class="service-number" aria-hidden="true">01</span>
+          <div class="service-icon"><i class="fa-solid fa-circle-check"></i></div>
+          <h3>Idea Validation</h3>
+          <p>We help you check whether your idea solves a real problem, who the users are, and what assumptions need testing first.</p>
+          <div class="service-tags">
+            <span class="tag">Problem Check</span>
+            <span class="tag">User Clarity</span>
+            <span class="tag">Assumption Testing</span>
+          </div>
+        </div>
+
+        <div class="service-card reveal reveal-delay-1">
+          <span class="service-number" aria-hidden="true">02</span>
+          <div class="service-icon"><i class="fa-solid fa-compass"></i></div>
+          <h3>Startup Roadmap</h3>
+          <p>We convert your raw idea into practical next steps: what to research, what to build first, and how to avoid unnecessary work.</p>
+          <div class="service-tags">
+            <span class="tag">MVP Direction</span>
+            <span class="tag">90-Day Plan</span>
+            <span class="tag">Execution Steps</span>
+          </div>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <span class="service-number" aria-hidden="true">03</span>
+          <div class="service-icon"><i class="fa-solid fa-folder-open"></i></div>
+          <h3>Documentation Support</h3>
+          <p>We guide you with basic startup documents like idea notes, one-page plans, pitch outlines, and registration direction when needed.</p>
+          <div class="service-tags">
+            <span class="tag">One-Page Plan</span>
+            <span class="tag">Pitch Outline</span>
+            <span class="tag">Basic Docs</span>
+          </div>
+        </div>
+
+        <div class="service-card reveal reveal-delay-3">
+          <span class="service-number" aria-hidden="true">04</span>
+          <div class="service-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Pitch Preparation</h3>
+          <p>We help you prepare for early pitch conversations by making your problem, solution, target users, and next milestones clearer.</p>
+          <div class="service-tags">
+            <span class="tag">Pitch Clarity</span>
+            <span class="tag">Founder Story</span>
+            <span class="tag">Milestones</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section how-bg" id="how">
+    <div class="container">
+      <div class="section-heading reveal">
+        <span class="section-label">The Process</span>
+        <h2>From raw idea to clearer startup direction in 3 steps.</h2>
+        <p class="subtext">Simple, honest, and beginner-friendly.</p>
+      </div>
+
+      <div class="steps-track">
+        <div class="step reveal">
+          <div class="step-circle">1</div>
+          <h3>Submit your idea</h3>
+          <p>Share what you are trying to build, who it is for, and where you are stuck.</p>
+          <div class="step-outcome"><i class="fa-solid fa-check"></i> Takes 5 minutes</div>
+        </div>
+
+        <div class="step reveal reveal-delay-2">
+          <div class="step-circle">2</div>
+          <h3>Get structured feedback</h3>
+          <p>We review the idea and give practical feedback on problem clarity, users, MVP direction, and next steps.</p>
+          <div class="step-outcome"><i class="fa-solid fa-check"></i> 3–5 days</div>
+        </div>
+
+        <div class="step reveal reveal-delay-4">
+          <div class="step-circle">3</div>
+          <h3>Move forward with clarity</h3>
+          <p>You get a cleaner direction before spending serious time, money, or effort.</p>
+          <div class="step-outcome"><i class="fa-solid fa-check"></i> Beginner friendly</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="section-heading reveal" style="text-align:left;max-width:100%;margin-bottom:var(--sp-md)">
+        <span class="section-label">About Launch Pad</span>
+        <h2>Built by a student founder solving early-stage confusion.</h2>
+        <p class="subtext">Launch Pad is currently in its early stage and is collecting feedback from students, freshers, and first-time founders.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card reveal">
+          <h3>Early-stage and honest.</h3>
+          <p>
+            Launch Pad is not claiming to be a big accelerator or a guaranteed funding platform. It is a practical support system for beginners who want to understand whether their idea has potential and what to do next.
+          </p>
+        </div>
+
+        <div class="value-list reveal reveal-delay-2">
+          <div class="value-row">
+            <div class="value-icon"><i class="fa-solid fa-bullseye"></i></div>
+            <div class="value-content">
+              <h4>Clarity over hype</h4>
+              <p>We focus on clear thinking, realistic planning, and practical next steps.</p>
+            </div>
+          </div>
+
+          <div class="value-row">
+            <div class="value-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="value-content">
+              <h4>Honest feedback</h4>
+              <p>If an idea needs improvement or a pivot, the feedback will be direct and useful.</p>
+            </div>
+          </div>
+
+          <div class="value-row">
+            <div class="value-icon"><i class="fa-solid fa-list-check"></i></div>
+            <div class="value-content">
+              <h4>Actionable roadmap</h4>
+              <p>Instead of only giving motivation, we help break the idea into steps.</p>
+            </div>
+          </div>
+
+          <div class="value-row">
+            <div class="value-icon"><i class="fa-solid fa-user-graduate"></i></div>
+            <div class="value-content">
+              <h4>Beginner-first approach</h4>
+              <p>Designed for students, freshers, and first-time founders who are starting from zero.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container contact-grid">
+      <div class="contact-left reveal">
+        <span class="section-label">Start Today</span>
+        <h2>Have an idea? Get early feedback.</h2>
+        <p>
+          Tell us about your idea and where you are stuck. We will review it and respond with practical guidance.
+        </p>
+
+        <div class="checklist">
+          <div class="check-item">
+            <span class="check-dot"><i class="fa-solid fa-check"></i></span>
+            Idea validation feedback
+          </div>
+          <div class="check-item">
+            <span class="check-dot"><i class="fa-solid fa-check"></i></span>
+            Beginner-friendly startup roadmap
+          </div>
+          <div class="check-item">
+            <span class="check-dot"><i class="fa-solid fa-check"></i></span>
+            Pitch conversation preparation
+          </div>
+          <div class="check-item">
+            <span class="check-dot"><i class="fa-solid fa-check"></i></span>
+            Early access founder list
+          </div>
+        </div>
+
+        <div class="calendar-placeholder">
+          <div class="calendar-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+          <h3>Join the early founder list</h3>
+          <p>Want updates, templates, and early access? Submit your email through the form.</p>
+          <a href="#contactForm" class="btn btn-dark">
+            <i class="fa-solid fa-arrow-down"></i>
+            Go to Form
+          </a>
+        </div>
+      </div>
+
+      <div class="form-card reveal reveal-delay-2">
+        <h3>Submit your idea</h3>
+        <form id="contactForm" action="https://formspree.io/f/mgorgjpg" method="POST" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="first_name" placeholder="Arjun" autocomplete="given-name">
+              <small class="error-msg">Please enter your first name.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="last_name" placeholder="Mehta" autocomplete="family-name">
+              <small class="error-msg">Please enter your last name.</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="contactDetail">Email or WhatsApp</label>
+            <input type="text" id="contactDetail" name="email_or_whatsapp" placeholder="email@domain.com or +91 98765 43210" autocomplete="email">
+            <small class="error-msg">Please enter a valid email or phone number.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="stage">Where are you right now?</label>
+            <select id="stage" name="stage">
+              <option value="" disabled selected>Select your current stage</option>
+              <option value="just-an-idea">Just an idea, haven't started</option>
+              <option value="researching">Researching and validating</option>
+              <option value="building-mvp">Building an MVP</option>
+              <option value="launched">Launched, looking for traction</option>
+              <option value="pitch-prep">Preparing to pitch or explain the idea</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="idea">Describe your idea</label>
+            <textarea id="idea" name="idea_description" placeholder="What problem are you solving? Who is it for? What is your possible solution?"></textarea>
+            <small class="error-msg">Please describe your idea in at least 15 characters.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="help">What is your biggest challenge right now?</label>
+            <input type="text" id="help" name="challenge" placeholder="e.g. I don't know if people will use this">
+            <small class="error-msg">Please tell us your main challenge.</small>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">
+            Send My Idea
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+
+          <p style="font-size:0.78rem;color:var(--ink-40);text-align:center;margin-top:12px;">
+            <i class="fa-solid fa-lock" style="font-size:0.7rem;"></i>
+            Your idea will not be shared publicly without permission.
+          </p>
+
+          <div class="success-banner" id="successBanner">
+            <i class="fa-solid fa-circle-check"></i>
+            Thank you! Your idea has been submitted. We will review it and respond soon.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom:12px;">
+            <span class="logo-mark"><i class="fa-solid fa-rocket"></i></span>
+            Launch Pad
+          </div>
+          <p>Helping students and first-time founders move from raw idea to clearer startup direction.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="#problems">Problems</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#how">Process</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Focus</h4>
+          <ul>
+            <li><a href="#services">Idea Validation</a></li>
+            <li><a href="#services">Startup Roadmap</a></li>
+            <li><a href="#services">Pitch Preparation</a></li>
+            <li><a href="#contact">Early Feedback</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Status</h4>
+          <ul>
+            <li><a href="#about">Early Stage</a></li>
+            <li><a href="#contact">Open for Feedback</a></li>
+            <li><a href="#contact">Global Early Users</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Launch Pad. All rights reserved.</p>
+        <div class="socials">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      sendEmailVerification,
+      signOut,
+      onAuthStateChanged,
+      reload
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB5_86-5HiNIYfQTw6VsmiW-Btbk34JoG4",
+      authDomain: "launch-pad-8c255.firebaseapp.com",
+      projectId: "launch-pad-8c255",
+      storageBucket: "launch-pad-8c255.firebasestorage.app",
+      messagingSenderId: "130042558203",
+      appId: "1:130042558203:web:e50ed33b932bd696c0225e",
+      measurementId: "G-HGL3P8FN1Q"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Header scroll effect
+    const header = document.getElementById("siteHeader");
+    const scrollHandler = () => {
+      header.classList.toggle("scrolled", window.scrollY > 20);
+    };
+    window.addEventListener("scroll", scrollHandler, { passive: true });
+    scrollHandler();
+
+    // Mobile menu
+    const menuBtn = document.getElementById("menuBtn");
+    const menuIcon = document.getElementById("menuIcon");
+    const navLinks = document.getElementById("navLinks");
+    let menuOpen = false;
+
+    menuBtn.addEventListener("click", () => {
+      menuOpen = !menuOpen;
+      navLinks.classList.toggle("active", menuOpen);
+      menuIcon.className = menuOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars";
+      menuBtn.setAttribute("aria-expanded", menuOpen);
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        menuOpen = false;
+        navLinks.classList.remove("active");
+        menuIcon.className = "fa-solid fa-bars";
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Reveal animation
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    const form = document.getElementById("contactForm");
+    const successBanner = document.getElementById("successBanner");
+
+    // Firebase email verification UI
+    form.insertAdjacentHTML("beforebegin", `
+      <div class="auth-box">
+        <h3>Email Verification</h3>
+        <input id="authEmail" type="email" placeholder="Enter your email">
+        <input id="authPassword" type="password" placeholder="Password minimum 6 characters">
+
+        <div class="auth-buttons">
+          <button type="button" id="signupBtn" class="btn btn-dark" style="width:100%;justify-content:center;">Sign Up & Send Verification</button>
+          <button type="button" id="loginBtn" class="btn btn-ghost" style="width:100%;justify-content:center;">Login</button>
+          <button type="button" id="resendBtn" class="btn btn-ghost" style="width:100%;justify-content:center;display:none;">Resend Verification Email</button>
+          <button type="button" id="logoutBtn" class="btn btn-ghost" style="width:100%;justify-content:center;display:none;">Logout</button>
+        </div>
+
+        <p class="auth-status" id="authStatus">Please sign up and verify your email before submitting your startup idea.</p>
+      </div>
+    `);
+
+    const authEmail = document.getElementById("authEmail");
+    const authPassword = document.getElementById("authPassword");
+    const signupBtn = document.getElementById("signupBtn");
+    const loginBtn = document.getElementById("loginBtn");
+    const resendBtn = document.getElementById("resendBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const authStatus = document.getElementById("authStatus");
+
+    const lockForm = () => {
+      form.style.opacity = "0.45";
+      form.style.pointerEvents = "none";
+    };
+
+    const unlockForm = () => {
+      form.style.opacity = "1";
+      form.style.pointerEvents = "auto";
+    };
+
     lockForm();
-    signupBtn.style.display = "block";
-    loginBtn.style.display = "block";
-    resendBtn.style.display = "none";
-    logoutBtn.style.display = "none";
-    status.innerText = "Login + verify email";
-    return;
-  }
 
-  await reload(user);
+    signupBtn.addEventListener("click", async () => {
+      try {
+        const email = authEmail.value.trim();
+        const password = authPassword.value.trim();
 
-  signupBtn.style.display = "none";
-  loginBtn.style.display = "none";
-  logoutBtn.style.display = "block";
+        if (!email || !password) {
+          alert("Please enter email and password.");
+          return;
+        }
 
-  if (user.emailVerified) {
-    unlockForm();
-    resendBtn.style.display = "none";
-    status.innerText = "✅ Verified. You can submit.";
-  } else {
-    lockForm();
-    resendBtn.style.display = "block";
-    status.innerText = "❌ Verify email first.";
-  }
-});
+        const userCred = await createUserWithEmailAndPassword(auth, email, password);
+        await sendEmailVerification(userCred.user);
+        authStatus.innerText = "Verification email sent. Check your inbox, click the link, then come back and login.";
+      } catch (error) {
+        alert(error.message);
+      }
+    });
 
-// ===== FORM SUBMIT =====
+    loginBtn.addEventListener("click", async () => {
+      try {
+        const email = authEmail.value.trim();
+        const password = authPassword.value.trim();
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+        if (!email || !password) {
+          alert("Please enter email and password.");
+          return;
+        }
 
-  if (!auth.currentUser || !auth.currentUser.emailVerified) {
-    alert("Verify email first");
-    return;
-  }
+        await signInWithEmailAndPassword(auth, email, password);
+        if (auth.currentUser) await reload(auth.currentUser);
+      } catch (error) {
+        alert(error.message);
+      }
+    });
 
-  const data = new FormData(form);
-  data.append("verified_email", auth.currentUser.email);
+    resendBtn.addEventListener("click", async () => {
+      try {
+        if (!auth.currentUser) {
+          alert("Please login first.");
+          return;
+        }
+        await sendEmailVerification(auth.currentUser);
+        authStatus.innerText = "Verification email sent again. Please check your inbox.";
+      } catch (error) {
+        alert(error.message);
+      }
+    });
 
-  const res = await fetch(form.action, {
-    method: "POST",
-    body: data,
-    headers: { Accept: "application/json" }
-  });
+    logoutBtn.addEventListener("click", async () => {
+      await signOut(auth);
+    });
 
-  if (res.ok) {
-    form.reset();
-    successBanner.style.display = "block";
-  } else {
-    alert("Error submitting form");
-  }
-});
-</script>
+    onAuthStateChanged(auth, async user => {
+      if (!user) {
+        lockForm();
+        signupBtn.style.display = "flex";
+        loginBtn.style.display = "flex";
+        resendBtn.style.display = "none";
+        logoutBtn.style.display = "none";
+        authStatus.innerText = "Please sign up and verify your email before submitting your startup idea.";
+        return;
+      }
+
+      await reload(user);
+
+      signupBtn.style.display = "none";
+      loginBtn.style.display = "none";
+      logoutBtn.style.display = "flex";
+
+      if (user.emailVerified) {
+        unlockForm();
+        resendBtn.style.display = "none";
+        authStatus.innerText = `✅ Email verified: ${user.email}. You can now submit your startup idea.`;
+      } else {
+        lockForm();
+        resendBtn.style.display = "flex";
+        authStatus.innerText = "❌ Email not verified. Please verify your email before submitting.";
+      }
+    });
+
+    // Formspree submit with validation + verified email check
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      if (!auth.currentUser) {
+        alert("Please login first.");
+        return;
+      }
+
+      await reload(auth.currentUser);
+
+      if (!auth.currentUser.emailVerified) {
+        alert("Please verify your email before submitting your idea.");
+        return;
+      }
+
+      const fname = document.getElementById("fname");
+      const lname = document.getElementById("lname");
+      const contactDetail = document.getElementById("contactDetail");
+      const idea = document.getElementById("idea");
+      const help = document.getElementById("help");
+
+      form.querySelectorAll(".error-msg").forEach(el => el.style.display = "none");
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phonePattern = /^[+\d\s\-]{7,20}$/;
+      let valid = true;
+
+      const showErr = input => {
+        input.parentElement.querySelector(".error-msg").style.display = "block";
+        valid = false;
+      };
+
+      if (!fname.value.trim()) showErr(fname);
+      if (!lname.value.trim()) showErr(lname);
+
+      const contactValue = contactDetail.value.trim();
+      if (!emailPattern.test(contactValue) && !phonePattern.test(contactValue.replace(/\s/g, ""))) {
+        showErr(contactDetail);
+      }
+
+      if (idea.value.trim().length < 15) showErr(idea);
+      if (!help.value.trim()) showErr(help);
+
+      if (!valid) return;
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+
+      try {
+        const data = new FormData(form);
+        data.append("verified_email", auth.currentUser.email);
+        data.append("firebase_uid", auth.currentUser.uid);
+
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: data,
+          headers: { Accept: "application/json" }
+        });
+
+        if (res.ok) {
+          form.reset();
+          successBanner.style.display = "block";
+          submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Sent!';
+          submitBtn.style.background = "var(--green)";
+        } else {
+          throw new Error("Form submission failed");
+        }
+      } catch (error) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Send My Idea <i class="fa-solid fa-arrow-right"></i>';
+        alert("Something went wrong. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>
